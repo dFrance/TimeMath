@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .wrapper {
+        background-color: #3498db;
+        border-radius: 1rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        min-width: 350px;
+      }
+
+      label {
+        color: #fff;
+        margin-bottom: 0.5rem;
+      }
+
+      input {
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        border: 0;
+      }
+      .row {
+        padding: 1rem;
+        gap: 0.5rem;
+        display: flex;
+        flex-direction: row;
+      }
+      .wrapper-submit {
+        display: flex;
+        justify-content: center;
+      }
+
+      .wrapper-submit button {
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.25rem;
+        background-color: #fff;
+        color: #8e44ad;
+        border: 0;
+        cursor: pointer;
+      }
+      #result {
+        color: #fff;
+        text-align: center;
+      }
+      .col {
+        display: flex;
+        flex-direction: column;
+      }
+      @media (max-width: 996px) {
+        .row {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="row">
+        <div class="col">
+          <label for="startMinute">Minutos inicio</label>
+          <input id="startMinute" type="number" />
+        </div>
+        <div class="col">
+          <label for="startSecond">Segundos inicio</label>
+          <input id="startSecond" type="number" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="endMinute">Minutos final</label>
+          <input id="endMinute" type="number" />
+        </div>
+        <div class="col">
+          <label for="endSecond">Segundos final</label>
+          <input id="endSecond" type="number" />
+        </div>
+      </div>
+      <div id="result"></div>
+      <div class="row wrapper-submit">
+        <button onclick="math()">Calcular</button>
+        <button onclick="reset()">Reset</button>
+      </div>
+    </div>
+    <script>
+      let startMinute = document.getElementById("startMinute");
+      let startSecond = document.getElementById("startSecond");
+      let endMinute = document.getElementById("endMinute");
+      let endSecond = document.getElementById("endSecond");
+      function math(e) {
+        var start =
+          Number(this.startMinute.value) * 60 + Number(this.startSecond.value);
+        var end =
+          Number(this.endMinute.value) * 60 + Number(this.endSecond.value);
+        var sum = end - start;
+        document.getElementById("result").innerText =
+          "Resultado: " + sum + " segundos";
+      }
+      function reset() {
+        this.startMinute.value = "";
+        this.startSecond.value = "";
+        this.endMinute.value = "";
+        this.endSecond.value = "";
+        document.getElementById("result").innerText = "";
+        this.startMinute.focus();
+      }
+    </script>
+  </body>
+</html>
